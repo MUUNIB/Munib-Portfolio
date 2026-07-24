@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Munib Khan Jadoon — Data Analyst & SAP Analytics Professional. Python, SQL, SAP Analytics Cloud, Power BI and predictive modeling for data-driven decision-making.">
+<meta name="author" content="Munib Khan Jadoon">
+<title>Munib Khan Jadoon — Data Analyst / SAP Analytics</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F2F4EF;
+    --panel:#FFFFFF;
+    --ink:#12241D;
+    --ink-soft:#4B5C53;
+    --teal:#1F6F5C;
+    --teal-deep:#123B31;
+    --amber:#DE9A34;
+    --line:#D7DED4;
+    --line-strong:#B9C4B9;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  h1,h2,h3,h4{
+    font-family:'Space Grotesk',sans-serif;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--teal);
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:16px;height:1px;
+    background:var(--amber);
+    display:inline-block;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  section{padding:88px 0;border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+
+  /* NAV */
+  header.topnav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(242,244,239,.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .navbar{
+    max-width:1080px;margin:0 auto;padding:16px 28px;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .brand{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;font-size:18px;
+  }
+  .brand span{color:var(--teal);}
+  .navlinks{display:flex;gap:28px;}
+  .navlinks a{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ink-soft);
+    padding-bottom:4px;border-bottom:1px solid transparent;
+    transition:.2s;
+  }
+  .navlinks a:hover{color:var(--ink);border-color:var(--amber);}
+  #menu-toggle{display:none;background:none;border:1px solid var(--line-strong);border-radius:var(--radius);padding:8px 10px;cursor:pointer;color:var(--ink);}
+  #mobile-menu{display:none;flex-direction:column;gap:2px;padding:0 28px 16px;}
+  #mobile-menu a{padding:10px 0;border-bottom:1px solid var(--line);font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.06em;text-transform:uppercase;}
+
+  /* HERO */
+  #home{padding-top:64px;padding-bottom:60px;border-bottom:1px solid var(--line);}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:end;}
+  .hero-name{font-size:clamp(38px,5.4vw,64px);font-weight:700;line-height:1.02;margin-top:14px;}
+  .hero-role{font-size:clamp(16px,2vw,20px);color:var(--teal-deep);margin-top:12px;font-weight:500;}
+  .hero-bio{margin-top:20px;color:var(--ink-soft);max-width:52ch;font-size:15px;}
+  .hero-cta{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.04em;
+    padding:12px 20px;border-radius:var(--radius);
+    display:inline-flex;align-items:center;gap:8px;
+    border:1px solid var(--ink);
+    transition:.2s;
+  }
+  .btn-solid{background:var(--ink);color:var(--bg);}
+  .btn-solid:hover{background:var(--teal);border-color:var(--teal);}
+  .btn-outline{border-color:var(--line-strong);color:var(--ink);}
+  .btn-outline:hover{border-color:var(--ink);}
+  .hero-meta{margin-top:26px;display:flex;flex-direction:column;gap:6px;color:var(--ink-soft);font-size:14px;}
+  .hero-meta i{width:16px;color:var(--amber);}
+
+  /* KPI dashboard tile — signature element */
+  .kpi-panel{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:20px;
+  }
+  .kpi-panel .kpi-head{
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-soft);
+    padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:16px;
+  }
+  .kpi-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);display:inline-block;margin-right:6px;}
+  .kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);}
+  .kpi-cell{background:var(--panel);padding:16px;}
+  .kpi-num{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;color:var(--teal-deep);}
+  .kpi-num .amber{color:var(--amber);}
+  .kpi-label{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-top:4px;}
+  .kpi-bar{height:4px;background:var(--line);border-radius:2px;margin-top:10px;overflow:hidden;}
+  .kpi-bar span{display:block;height:100%;background:linear-gradient(90deg,var(--teal),var(--amber));}
+
+  /* SECTION HEAD */
+  .sec-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:10px;}
+  .sec-title{font-size:clamp(24px,3vw,32px);font-weight:700;}
+  .sec-idx{font-family:'IBM Plex Mono',monospace;color:var(--line-strong);font-size:13px;}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1.3fr .9fr;gap:56px;}
+  .about-grid p{color:var(--ink-soft);margin-bottom:14px;}
+  .fact-table{border-top:1px solid var(--line);margin-top:4px;}
+  .fact-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px;}
+  .fact-row .k{font-family:'IBM Plex Mono',monospace;color:var(--ink-soft);letter-spacing:.03em;}
+  .fact-row .v{font-weight:500;text-align:right;}
+
+  /* EXPERIENCE — ledger rows */
+  .entry{
+    display:grid;grid-template-columns:180px 1fr;gap:24px;
+    padding:26px 0;border-bottom:1px solid var(--line);
+  }
+  .entry:first-child{padding-top:0;}
+  .entry:last-child{border-bottom:none;}
+  .entry .when{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--teal);letter-spacing:.02em;}
+  .entry .where{font-size:12.5px;color:var(--ink-soft);margin-top:4px;}
+  .entry h4{font-size:19px;font-weight:600;}
+  .entry ul{margin:12px 0 0;padding-left:18px;color:var(--ink-soft);font-size:14.5px;}
+  .entry li{margin-bottom:6px;}
+  .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+  .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.03em;
+    border:1px solid var(--line-strong);border-radius:var(--radius);
+    padding:4px 9px;color:var(--ink-soft);
+  }
+
+  /* SKILLS — grouped bar chart */
+  .skill-groups{display:grid;grid-template-columns:1fr 1fr;gap:40px 56px;}
+  .skill-group h4{font-size:14px;font-family:'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:16px;}
+  .skill-row{margin-bottom:14px;}
+  .skill-row .lbl{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:6px;}
+  .skill-row .lbl .pct{font-family:'IBM Plex Mono',monospace;color:var(--ink-soft);font-size:12px;}
+  .track{height:6px;background:var(--line);border-radius:3px;overflow:hidden;}
+  .track span{display:block;height:100%;background:var(--teal);border-radius:3px;}
+  .track span.amber-fill{background:var(--amber);}
+
+  .chip-grid{display:flex;flex-wrap:wrap;gap:10px;margin-top:44px;}
+  .chip{
+    display:flex;align-items:center;gap:8px;
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:9px 14px;font-size:13px;
+  }
+  .chip i{color:var(--teal);}
+
+  /* PROJECTS */
+  .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--line);border:1px solid var(--line);}
+  .proj-card{background:var(--panel);padding:28px;display:flex;flex-direction:column;}
+  .proj-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;}
+  .proj-card h4{font-size:19px;font-weight:600;max-width:70%;}
+  .proj-stat{text-align:right;}
+  .proj-stat .num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;color:var(--amber);}
+  .proj-stat .lab{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-soft);letter-spacing:.04em;text-transform:uppercase;}
+  .proj-when{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--teal);margin-top:6px;}
+  .proj-card p{color:var(--ink-soft);font-size:14.5px;margin-top:12px;flex-grow:1;}
+
+  /* CONTACT */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
+  .contact-item{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);align-items:flex-start;}
+  .contact-item i{color:var(--amber);width:18px;margin-top:3px;}
+  .contact-item h5{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:4px;}
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);margin-bottom:8px;}
+  .field input,.field textarea{
+    width:100%;background:var(--panel);border:1px solid var(--line-strong);border-radius:var(--radius);
+    padding:12px 14px;font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:var(--ink);
+  }
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--teal);}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  #form-note{display:none;font-size:13px;padding:10px 14px;border-radius:var(--radius);margin-bottom:14px;font-family:'IBM Plex Mono',monospace;}
+
+  footer{padding:36px 0;}
+  .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  .foot-links{display:flex;gap:16px;}
+  .foot-links a{width:36px;height:36px;border:1px solid var(--line-strong);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.2s;}
+  .foot-links a:hover{border-color:var(--teal);color:var(--teal);}
+
+  @media (max-width:860px){
+    .navlinks{display:none;}
+    #menu-toggle{display:block;}
+    #mobile-menu.open{display:flex;}
+    .hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr;}
+    .skill-groups{grid-template-columns:1fr;}
+    .proj-grid{grid-template-columns:1fr;}
+    .entry{grid-template-columns:1fr;}
+    .two-col{grid-template-columns:1fr;}
+    section{padding:60px 0;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topnav">
+  <div class="navbar">
+    <a href="#home" class="brand">MKJ<span>.</span></a>
+    <nav class="navlinks">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button id="menu-toggle" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
+  </div>
+  <nav id="mobile-menu">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section id="home">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">Data Analyst — SAP Analytics</div>
+        <h1 class="hero-name">Munib Khan<br>Jadoon</h1>
+        <p class="hero-role">Turning SAP, SQL &amp; Python data into dashboards executives actually use.</p>
+        <p class="hero-bio">Data Analyst and SAP Analytics professional building end-to-end pipelines and interactive dashboards across SAP Analytics Cloud, SAP HANA, and SAP Datasphere. I bridge technical analysis in Python and SQL with clear business communication — currently engineering enterprise reporting models at TallyMarks Consulting while pursuing an M.Phil in Computer Science.</p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-solid">Get in touch <i class="fas fa-arrow-right"></i></a>
+          <a href="#projects" class="btn btn-outline">View projects</a>
+        </div>
+        <div class="hero-meta">
+          <div><i class="fas fa-location-dot"></i> Islamabad, Pakistan</div>
+          <div><i class="fas fa-phone"></i> +92 318 5538074</div>
+          <div><i class="fas fa-envelope"></i> Munib.se16@gmail.com</div>
+        </div>
+      </div>
+
+      <div class="kpi-panel">
+        <div class="kpi-head"><span><span class="kpi-dot"></span>profile_summary.sac</span><span>LIVE</span></div>
+        <div class="kpi-grid">
+          <div class="kpi-cell">
+            <div class="kpi-num">~130</div>
+            <div class="kpi-label">Dashboards in scope</div>
+            <div class="kpi-bar"><span style="width:78%"></span></div>
+          </div>
+          <div class="kpi-cell">
+            <div class="kpi-num"><span class="amber">0.87</span></div>
+            <div class="kpi-label">Model R² — Propex</div>
+            <div class="kpi-bar"><span style="width:87%"></span></div>
+          </div>
+          <div class="kpi-cell">
+            <div class="kpi-num">2</div>
+            <div class="kpi-label">Internships completed</div>
+            <div class="kpi-bar"><span style="width:50%"></span></div>
+          </div>
+          <div class="kpi-cell">
+            <div class="kpi-num">4+</div>
+            <div class="kpi-label">Shipped projects</div>
+            <div class="kpi-bar"><span style="width:65%"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">About</h2>
+      <span class="sec-idx mono">01 / profile</span>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>I'm a Data Analyst and SAP Analytics professional with a foundation in building end-to-end data pipelines, designing interactive BI dashboards, and translating complex datasets into insights leadership teams can act on.</p>
+        <p>My work sits at the intersection of technical analysis and business communication — using Python and SQL to shape raw data, and tools like SAP Analytics Cloud and Power BI to make it usable for decision-makers. I'm currently a Management Trainee Officer on SAP Analytics at TallyMarks Consulting, and pursuing an M.Phil in Computer Science at Abbottabad University of Science and Technology.</p>
+      </div>
+      <div class="fact-table">
+        <div class="fact-row"><span class="k mono">NAME</span><span class="v">Munib Khan Jadoon</span></div>
+        <div class="fact-row"><span class="k mono">ROLE</span><span class="v">Data Analyst, SAP Analytics</span></div>
+        <div class="fact-row"><span class="k mono">EDUCATION</span><span class="v">M.Phil Computer Science</span></div>
+        <div class="fact-row"><span class="k mono">UNIVERSITY</span><span class="v">AUST, Abbottabad</span></div>
+        <div class="fact-row"><span class="k mono">LOCATION</span><span class="v">Islamabad, Pakistan</span></div>
+        <div class="fact-row"><span class="k mono">EMAIL</span><span class="v">Munib.se16@gmail.com</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">Experience</h2>
+      <span class="sec-idx mono">02 / roles</span>
+    </div>
+
+    <div class="entry">
+      <div>
+        <div class="when">May 2026 — Present</div>
+        <div class="where">TallyMarks Consulting (TMC)<br>Karachi / Islamabad</div>
+      </div>
+      <div>
+        <h4>Management Trainee Officer — SAP Analytics</h4>
+        <ul>
+          <li>Leverage SAP Analytics Cloud (SAC), SAP Datasphere, and SAP HANA to engineer data solutions and enterprise-level analytics models.</li>
+          <li>Collaborate with cross-functional consulting teams to turn raw business requirements into functional data visualization tools and predictive dashboards.</li>
+          <li>Optimize SQL-based workflows and data models to speed up delivery of key business performance reports.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">SAP Analytics Cloud</span><span class="tag">SAP HANA</span><span class="tag">SAP Datasphere</span><span class="tag">SQL</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div>
+        <div class="when">Jul 2024 — Aug 2024</div>
+        <div class="where">TrioLink<br>Abbottabad</div>
+      </div>
+      <div>
+        <h4>Data Analyst Intern</h4>
+        <ul>
+          <li>Architected an end-to-end data pipeline with Python and Excel to clean and organize structured datasets, removing manual processing bottlenecks.</li>
+          <li>Developed interactive dashboards and data visualizations that directly supported executive-level decision-making.</li>
+          <li>Streamlined data interpretation workflows, improving report accuracy and delivery speed.</li>
+        </ul>
+        <div class="tag-row"><span class="tag">Python</span><span class="tag">Excel</span><span class="tag">Reporting</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div>
+        <div class="when">Jun 2024 — Sep 2024</div>
+        <div class="where">Bloggera<br>Remote</div>
+      </div>
+      <div>
+        <h4>SEO Content Analyst Intern</h4>
+        <ul>
+          <li>Used audience behavior data and keyword research to optimize content strategy, growing organic reach and engagement.</li>
+          <li>Designed and maintained real-time analytics dashboards in Excel and Google Sheets to track KPIs and content opportunities.</li>
+          <li>Worked with senior editorial teams to turn search data into high-performing content, improving site visibility.</li>
+        </ul>
+        <div class="tag-row"><span class="tag">Google Sheets</span><span class="tag">Excel</span><span class="tag">Analytics</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div>
+        <div class="when">Feb 2026 — Present</div>
+        <div class="where">AUST<br>Abbottabad</div>
+      </div>
+      <div>
+        <h4>M.Phil in Computer Science</h4>
+        <div class="tag-row"><span class="tag">Research</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div>
+        <div class="when">Mar 2022 — Feb 2026</div>
+        <div class="where">Bahria University<br>Islamabad</div>
+      </div>
+      <div>
+        <h4>BS, Information Technology</h4>
+        <div class="tag-row"><span class="tag">Data Science focus</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div>
+        <div class="when">Jul 2018 — Aug 2020</div>
+        <div class="where">PIPS &amp; College<br>Abbottabad</div>
+      </div>
+      <div>
+        <h4>HSSC — Pre-Engineering</h4>
+        <div class="tag-row"><span class="tag">Abbottabad Board</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">Skills</h2>
+      <span class="sec-idx mono">03 / stack</span>
+    </div>
+
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h4>Analytics &amp; Visualization</h4>
+        <div class="skill-row"><div class="lbl"><span>Microsoft Excel</span><span class="pct">Advanced</span></div><div class="track"><span style="width:95%"></span></div></div>
+        <div class="skill-row"><div class="lbl"><span>Power BI</span><span class="pct">Advanced</span></div><div class="track"><span style="width:90%"></span></div></div>
+        <div class="skill-row"><div class="lbl"><span>SAP Analytics Cloud</span><span class="pct">Proficient</span></div><div class="track"><span class="amber-fill" style="width:85%"></span></div></div>
+        <div class="skill-row"><div class="lbl"><span>Python (Pandas, NumPy)</span><span class="pct">Advanced</span></div><div class="track"><span style="width:88%"></span></div></div>
+      </div>
+      <div class="skill-group">
+        <h4>Data &amp; Machine Learning</h4>
+        <div class="skill-row"><div class="lbl"><span>SQL / PostgreSQL</span><span class="pct">Proficient</span></div><div class="track"><span style="width:85%"></span></div></div>
+        <div class="skill-row"><div class="lbl"><span>Scikit-learn / XGBoost</span><span class="pct">Proficient</span></div><div class="track"><span style="width:82%"></span></div></div>
+        <div class="skill-row"><div class="lbl"><span>Node.js</span><span class="pct">Proficient</span></div><div class="track"><span style="width:80%"></span></div></div>
+        <div class="skill-row"><div class="lbl"><span>Flutter &amp; Dart</span><span class="pct">Working</span></div><div class="track"><span class="amber-fill" style="width:75%"></span></div></div>
+      </div>
+    </div>
+
+    <div class="chip-grid">
+      <div class="chip"><i class="fab fa-python"></i>Python</div>
+      <div class="chip"><i class="fas fa-database"></i>SAP HANA</div>
+      <div class="chip"><i class="fas fa-database"></i>SAP Datasphere</div>
+      <div class="chip"><i class="fas fa-database"></i>PostgreSQL</div>
+      <div class="chip"><i class="fas fa-database"></i>MySQL</div>
+      <div class="chip"><i class="fas fa-chart-line"></i>Matplotlib / Seaborn</div>
+      <div class="chip"><i class="fab fa-react"></i>React.js</div>
+      <div class="chip"><i class="fas fa-file-excel"></i>Google Sheets</div>
+      <div class="chip"><i class="fab fa-git-alt"></i>Git &amp; GitHub</div>
+      <div class="chip"><i class="fas fa-book"></i>Jupyter</div>
+      <div class="chip"><i class="fab fa-php"></i>PHP</div>
+      <div class="chip"><i class="fas fa-file-lines"></i>LaTeX</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">Projects</h2>
+      <span class="sec-idx mono">04 / featured</span>
+    </div>
+
+    <div class="proj-grid">
+      <div class="proj-card">
+        <div class="proj-top">
+          <h4>Propex — AI-Assisted Real Estate Platform</h4>
+          <div class="proj-stat"><div class="num">0.87</div><div class="lab">R² score</div></div>
+        </div>
+        <div class="proj-when">Final Year Project · Dec 2025</div>
+        <p>XGBoost Regressor for automated property price estimation in the Pakistani real estate market, on a dual-backend architecture: Flask for ML inference, Node.js for API and auth, PostgreSQL for query-optimized data integrity across live listings.</p>
+        <div class="tag-row"><span class="tag">React.js</span><span class="tag">Node.js</span><span class="tag">Flask</span><span class="tag">PostgreSQL</span><span class="tag">XGBoost</span></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <h4>Doctor Appointment Application</h4>
+          <div class="proj-stat"><div class="num">Mobile</div><div class="lab">Cross-platform</div></div>
+        </div>
+        <div class="proj-when">Academic Project</div>
+        <p>Cross-platform mobile app for scheduling medical appointments, with authentication, doctor search by specialization, and real-time booking on an intuitive UI.</p>
+        <div class="tag-row"><span class="tag">Flutter</span><span class="tag">Dart</span></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <h4>AI-Based E-Commerce Recommender</h4>
+          <div class="proj-stat"><div class="num">ML</div><div class="lab">Term project</div></div>
+        </div>
+        <div class="proj-when">Term Project</div>
+        <p>Product recommendation system for e-commerce, built and tuned with Scikit-learn, focused on user personalization and scalable cloud deployment.</p>
+        <div class="tag-row"><span class="tag">Scikit-learn</span><span class="tag">Python</span><span class="tag">Cloud</span></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <h4>Online Voting System</h4>
+          <div class="proj-stat"><div class="num">Web</div><div class="lab">Secure auth</div></div>
+        </div>
+        <div class="proj-when">Academic Project</div>
+        <p>Secure web-based voting system with admin dashboards for candidate management, real-time result monitoring, and authenticated voter access.</p>
+        <div class="tag-row"><span class="tag">PHP</span><span class="tag">MySQL</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">Contact</h2>
+      <span class="sec-idx mono">05 / reach out</span>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <p style="color:var(--ink-soft);max-width:44ch;margin-bottom:20px;">Open to Data Analyst, BI, and Data Science opportunities — including remote and international roles. Reach out directly or send a message.</p>
+        <div class="contact-item"><i class="fas fa-location-dot"></i><div><h5>Location</h5>Islamabad, Pakistan</div></div>
+        <div class="contact-item"><i class="fas fa-envelope"></i><div><h5>Email</h5>Munib.se16@gmail.com</div></div>
+        <div class="contact-item"><i class="fas fa-phone"></i><div><h5>Phone</h5>+92 318 5538074</div></div>
+        <div style="margin-top:22px;display:flex;gap:12px;">
+          <a href="https://www.linkedin.com/in/munib-khan-jadoon" target="_blank" class="btn btn-outline"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+          <a href="https://github.com/MUUNIB" target="_blank" class="btn btn-outline"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+      </div>
+      <div>
+        <form id="contact-form">
+          <div id="form-note"></div>
+          <div class="two-col">
+            <div class="field"><label for="name">Your name</label><input type="text" id="name" required></div>
+            <div class="field"><label for="email">Your email</label><input type="email" id="email" required></div>
+          </div>
+          <div class="field"><label for="subject">Subject</label><input type="text" id="subject" required></div>
+          <div class="field"><label for="message">Message</label><textarea id="message" rows="5" required></textarea></div>
+          <button type="submit" class="btn btn-solid" style="width:100%;justify-content:center;">Send message <i class="fas fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <div>
+      <div class="brand">MKJ<span>.</span></div>
+      <p class="mono" style="font-size:12px;color:var(--ink-soft);margin-top:6px;">© 2026 Munib Khan Jadoon</p>
+    </div>
+    <div class="foot-links">
+      <a href="https://www.linkedin.com/in/munib-khan-jadoon" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="mailto:Munib.se16@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      <a href="https://github.com/MUUNIB" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuToggle.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  document.querySelectorAll('#mobile-menu a').forEach(a=>a.addEventListener('click',()=>mobileMenu.classList.remove('open')));
+
+  const form = document.getElementById('contact-form');
+  const note = document.getElementById('form-note');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
+    const mailto = `mailto:Munib.se16@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent('Name: '+name+'\nEmail: '+email+'\n\n'+message)}`;
+    note.style.display='block';
+    note.style.background='#E8F0EC';
+    note.style.color='#123B31';
+    note.style.border='1px solid #C7D8CE';
+    note.textContent='Opening your email client...';
+    window.location.href = mailto;
+    setTimeout(()=>{ form.reset(); note.textContent='Message prepared — thanks for reaching out.'; }, 900);
+  });
+</script>
+</body>
+</html>
